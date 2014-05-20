@@ -76,6 +76,12 @@ def factorized_to_number(n):
         output *= prime ** n[prime]
     return output
 
+def list_product(l):
+    """Returns the product of all of the numbers in the list"""
+    output = 1
+    for number in l:
+        output *= number
+    return output
 
 
 
