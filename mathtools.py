@@ -11,14 +11,60 @@ def is_prime(n):
 
 def generate_primes(n):
     """Outputs a list of primes up to and including n"""
-    output = []
+    output = [2]
     if n <= 1:
-        return output
+        return []
     if n <= 2:
-        return [2]
+        return output
     for i in xrange(3, n + 1, 2):
         if is_prime(i):
             output.append(i)
     return output
 
-print generate_primes(10)
+def get_next_prime(n):
+    """Gets the next prime number after n"""
+    while not is_prime(n + 1):
+        n += 1
+    return n + 1
+
+def get_previous_prime(n):
+    """Gets the previous prime number before n"""
+    if n == 2:
+        return
+    while not is_prime(n - 1):
+        n -= 1
+    return n - 1
+
+def get_previous_divisible_prime(n, p):
+    """Gets the previous prime number before p that is divisible by n"""
+    p = get_previous_prime(p)
+    while n % p != 0:
+        p = get_previous_prime(p)
+        if p == 2:
+            return
+    return p
+
+def get_next_divisible_prime(n, p):
+    """Gets the next prime number after p that is divisible by n"""
+    p = get_next_prime(p)
+    while n % p != 0:
+        p = get_next_prime(p)
+        if p > n:
+            return
+    return p
+
+def prime_factorization(n):
+    output = {}
+    prime = get_next_divisible_prime(n, 0)
+    while n != 1:
+        while n % prime == 0:
+            if prime not in output:
+                output[prime] = 1
+            else:
+                output[prime] += 1
+            n = n / prime
+        prime = get_next_divisible_prime(n, prime)
+    return output
+
+
+
