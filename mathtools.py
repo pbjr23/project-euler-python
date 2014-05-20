@@ -54,6 +54,9 @@ def get_next_divisible_prime(n, p):
     return p
 
 def prime_factorization(n):
+    """Outputs the prime factorization of a number, in dictionary form"""
+    if n == 1:
+        return {1: 1}
     output = {}
     prime = get_next_divisible_prime(n, 0)
     while n != 1:
@@ -65,6 +68,15 @@ def prime_factorization(n):
             n = n / prime
         prime = get_next_divisible_prime(n, prime)
     return output
+
+def factorized_to_number(n):
+    """Turns the dictionary factorization into a number"""
+    output = 1
+    for prime in n:
+        output *= prime ** n[prime]
+    return output
+
+
 
 
 
