@@ -1,5 +1,6 @@
 from mathtools import get_next_prime
 
+
 def sum_of_primes_under(n):
     start = 2
     total = 0
@@ -9,4 +10,3 @@ def sum_of_primes_under(n):
     return total
 
 print sum_of_primes_under(2000000)
-

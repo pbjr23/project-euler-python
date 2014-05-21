@@ -1,5 +1,6 @@
 import mathtools
 
+
 def divisible_by(n):
     output = {}
     for i in xrange(1, n + 1):
@@ -12,4 +13,3 @@ def divisible_by(n):
     return mathtools.factorized_to_number(output)
 
 print divisible_by(20)
-

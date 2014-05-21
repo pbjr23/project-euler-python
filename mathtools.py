@@ -9,6 +9,7 @@ def is_prime(n):
             return False
     return True
 
+
 def generate_primes(n):
     """Outputs a list of primes up to and including n"""
     output = [2]
@@ -21,6 +22,7 @@ def generate_primes(n):
             output.append(i)
     return output
 
+
 def get_next_prime(n):
     """Gets the next prime number after n"""
     if n < 2:
@@ -32,7 +34,8 @@ def get_next_prime(n):
     while not is_prime(n + 2):
         n += 2
     return n + 2
-    
+
+
 def get_previous_prime(n):
     """Gets the previous prime number before n"""
     if n == 2:
@@ -40,6 +43,7 @@ def get_previous_prime(n):
     while not is_prime(n - 1):
         n -= 1
     return n - 1
+
 
 def get_previous_divisible_prime(n, p):
     """Gets the previous prime number before p that is divisible by n"""
@@ -50,6 +54,7 @@ def get_previous_divisible_prime(n, p):
             return
     return p
 
+
 def get_next_divisible_prime(n, p):
     """Gets the next prime number after p that is divisible by n"""
     p = get_next_prime(p)
@@ -58,6 +63,7 @@ def get_next_divisible_prime(n, p):
         if p > n:
             return
     return p
+
 
 def prime_factorization(n):
     """Outputs the prime factorization of a number, in dictionary form"""
@@ -75,6 +81,7 @@ def prime_factorization(n):
         prime = get_next_divisible_prime(n, prime)
     return output
 
+
 def factorized_to_number(n):
     """Turns the dictionary factorization into a number"""
     output = 1
@@ -82,13 +89,10 @@ def factorized_to_number(n):
         output *= prime ** n[prime]
     return output
 
+
 def list_product(l):
     """Returns the product of all of the numbers in the list"""
     output = 1
     for number in l:
         output *= number
     return output
-
-
-
-
