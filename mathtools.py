@@ -23,10 +23,16 @@ def generate_primes(n):
 
 def get_next_prime(n):
     """Gets the next prime number after n"""
-    while not is_prime(n + 1):
+    if n < 2:
+        return 2
+    if n % 2 == 0:
+        if is_prime(n + 1):
+            return n + 1
         n += 1
-    return n + 1
-
+    while not is_prime(n + 2):
+        n += 2
+    return n + 2
+    
 def get_previous_prime(n):
     """Gets the previous prime number before n"""
     if n == 2:

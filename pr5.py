@@ -2,7 +2,7 @@ import mathtools
 
 def divisible_by(n):
     output = {}
-    for i in range(1, n + 1):
+    for i in xrange(1, n + 1):
         factorized = mathtools.prime_factorization(i)
         for number in factorized:
             if number not in output:

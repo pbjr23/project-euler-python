@@ -7,7 +7,7 @@ def largest_product(n):
         number += line.strip()
     l = [int(i) for i in list(str(number))]
     largest = 0
-    for i in range(0, len(l) - n + 1):
+    for i in xrange(0, len(l) - n + 1):
         current_product = mathtools.list_product(l[i:i+n])
         if current_product > largest:
             largest = current_product

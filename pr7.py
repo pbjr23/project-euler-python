@@ -2,7 +2,7 @@ import mathtools
 
 def nth_prime(n):
     start = 0
-    for i in range(n):
+    for i in xrange(n):
         prime = mathtools.get_next_prime(start)
         start = prime
     return prime
