@@ -90,6 +90,28 @@ def factorized_to_number(n):
     return output
 
 
+def get_factors(n):
+    """Outputs the factors of n as a list"""
+    factorization = prime_factorization(n)
+    all_factors = [1]
+    init_powers = []
+    for prime in factorization:
+        powers = [prime ** i for i in range(1, factorization[prime] + 1)]
+        all_factors.extend(powers)
+        init_powers.append(powers)
+    for prime_powers in xrange(len(init_powers)):
+        for prime in init_powers[prime_powers]:
+            all_factors.extend([prime * j for i in init_powers[prime_powers+1:] for j in i])
+    return all_factors
+
+
+l = [[1,2,3], [4,5,6]]
+
+print [j for i in l for j in i]
+
+{2: 3, 3: 2, 5: 2}
+print get_factors(1800)
+
 def list_product(l):
     """Returns the product of all of the numbers in the list"""
     output = 1
