@@ -1,3 +1,11 @@
+def list_product(l):
+    """Returns the product of all of the numbers in the list"""
+    output = 1
+    for number in l:
+        output *= number
+    return output
+
+
 def is_prime(n):
     """Returns true if a number is prime, false if not"""
     if n == 2:
@@ -90,31 +98,70 @@ def factorized_to_number(n):
     return output
 
 
-def get_factors(n):
+def get_factors(n, with_original=True):
     """Outputs the factors of n as a list"""
     factorization = prime_factorization(n)
     all_factors = [1]
     init_powers = []
+    prime_powers = {}
+
     for prime in factorization:
         powers = [prime ** i for i in range(1, factorization[prime] + 1)]
         all_factors.extend(powers)
-        init_powers.append(powers)
-    for prime_powers in xrange(len(init_powers)):
-        for prime in init_powers[prime_powers]:
-            all_factors.extend([prime * j for i in init_powers[prime_powers+1:] for j in i])
-    return all_factors
+        prime_powers[prime] = powers
+
+    for i in range(2, len(prime_powers) + 1):
+        combos = list_combinations(prime_powers.keys(), i)
+        for combo in combos:
+            powers = [prime_powers[i] for i in combo]
+            all_factors.extend(product(powers))
+    if with_original == True:
+        return all_factors
+    else:
+        all_factors.remove(n)
+        return all_factors
 
 
-l = [[1,2,3], [4,5,6]]
+def num_factors(n):
+    """Returns number of factors of n, including n and 1"""
+    count = 0
+    for i in range(1, int(n ** 0.5) + 1):
+        if n % i == 0:
+            if float(n) / i == float(i):
+                count += 1
+            else:
+                count += 2
+    return count
 
-print [j for i in l for j in i]
 
-{2: 3, 3: 2, 5: 2}
-print get_factors(1800)
+def product(iterables):
+    """ Generates combinations of elements from each input list of list_lengths
+        Takes multiple lists as input and returns all combinations using one 
+        element from each list"""
+    output = []
+    num_iters = len(iterables)
+    list_lengths = []
+    list_remaining = [1]
 
-def list_product(l):
-    """Returns the product of all of the numbers in the list"""
-    output = 1
-    for number in l:
-        output *= number
+    for i in xrange(num_iters - 1, -1, -1):
+        m = len(iterables[i])
+        list_lengths.insert(0, m)
+        list_remaining.insert(0, m * list_remaining[0])
+    nProducts = list_remaining.pop(0)
+
+    for p in xrange(nProducts):
+        current = []
+        for i in xrange(num_iters):
+            j = p / list_remaining[i] % list_lengths[i]
+            current.append(iterables[i][j])
+        output.append(list_product(current))
     return output
+
+
+def list_combinations(l, n):
+    """Generates combinations of size n from list l"""
+    if n == 0:
+        return [[]]
+    else:
+        return [[x] + suffix for i, x in enumerate(l)
+                for suffix in list_combinations(l[i + 1:], n - 1)]
