@@ -98,8 +98,9 @@ def factorized_to_number(n):
     return output
 
 
-def get_factors(n, with_original=True):
-    """Outputs the factors of n as a list"""
+def get_factors_2(n, with_original=True):
+    """Outputs the factors of n as a list.
+       Uses the prime factorization to generate all factors"""
     factorization = prime_factorization(n)
     all_factors = [1]
     init_powers = []
@@ -120,6 +121,20 @@ def get_factors(n, with_original=True):
     else:
         all_factors.remove(n)
         return all_factors
+
+def get_factors(n):
+    """Outputs the factors of n as a list"""
+    if n == 1:
+        return [1]
+    factors = []
+    for i in range(1, int(n ** 0.5) + 1):
+        if n % i == 0:
+            if n / i == i:
+                factors.append(i)
+            else:
+                factors.append(i)
+                factors.append(n / i)
+    return factors
 
 
 def num_factors(n):
