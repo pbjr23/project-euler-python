@@ -180,3 +180,10 @@ def list_combinations(l, n):
     else:
         return [[x] + suffix for i, x in enumerate(l)
                 for suffix in list_combinations(l[i + 1:], n - 1)]
+
+def factorial(n):
+    if n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
