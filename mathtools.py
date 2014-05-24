@@ -182,6 +182,7 @@ def list_combinations(l, n):
                 for suffix in list_combinations(l[i + 1:], n - 1)]
 
 def factorial(n):
+    """Returns factorial of number n"""
     if n == 1:
         return 1
     else:
