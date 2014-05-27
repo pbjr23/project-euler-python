@@ -188,3 +188,9 @@ def factorial(n):
     else:
         return n * factorial(n - 1)
 
+def nth_fibonacci_number(n, memo={0:0, 1:1}):
+    """Prints the nth nth fibonacci number"""
+    if not n in memo:
+        memo[n] = nth_fibonacci_number(n-1, memo) + nth_fibonacci_number(n-2, memo)
+    return memo[n]
+
