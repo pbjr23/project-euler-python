@@ -122,6 +122,7 @@ def get_factors_2(n, with_original=True):
         all_factors.remove(n)
         return all_factors
 
+
 def get_factors(n):
     """Outputs the factors of n as a list"""
     if n == 1:
@@ -181,6 +182,7 @@ def list_combinations(l, n):
         return [[x] + suffix for i, x in enumerate(l)
                 for suffix in list_combinations(l[i + 1:], n - 1)]
 
+
 def factorial(n):
     """Returns factorial of number n"""
     if n == 1:
@@ -188,9 +190,20 @@ def factorial(n):
     else:
         return n * factorial(n - 1)
 
-def nth_fibonacci_number(n, memo={0:0, 1:1}):
+
+def nth_fibonacci_number(n, memo={0: 0, 1: 1}):
     """Prints the nth nth fibonacci number"""
     if not n in memo:
-        memo[n] = nth_fibonacci_number(n-1, memo) + nth_fibonacci_number(n-2, memo)
+        memo[n] = nth_fibonacci_number(n - 1, memo) + \
+            nth_fibonacci_number(n - 2, memo)
     return memo[n]
 
+
+def alphabet_dictionary(reverse=False):
+    """Returns a dictionary with letters as keys and numbers as values by default, reversed if reverse==True"""
+    if reverse == True:
+        return {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f', 7: 'g', 8: 'h', 9: 'i', 10: 'j', 11: 'k', 12: 'l', 13: 'm', 14: 'n', 15: 'o', 16: 'p', 17: 'q', 18: 'r', 19: 's', 20: 't', 21: 'u', 22: 'v', 23: 'w', 24: 'x', 25: 'y', 26: 'z'}
+    else:
+        return {'a': 1, 'c': 3, 'b': 2, 'e': 5, 'd': 4, 'g': 7, 'f': 6, 'i': 9, 'h': 8, 'k': 11, 'j': 10, 'm': 13, 'l': 12, 'o': 15, 'n': 14, 'q': 17, 'p': 16, 's': 19, 'r': 18, 'u': 21, 't': 20, 'w': 23, 'v': 22, 'y': 25, 'x': 24, 'z': 26}
+
+        
