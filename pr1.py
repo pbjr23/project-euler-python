@@ -1,5 +1,3 @@
-import mathtools
-
 def sum_of_multiples(n):
     sum = 0
     for i in xrange(n):
